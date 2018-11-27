@@ -7,6 +7,7 @@ def new_list(in_list):
         if elem not in new_list:
             new_list.append(elem)
     return new_list
+#   return list(set(in_list)) works also
 
 unique_list = new_list(a)
 print(unique_list)
