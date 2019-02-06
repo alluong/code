@@ -28,9 +28,21 @@ int rangeSumBST(struct TreeNode* root, int L, int R) {
     
     if (!root)
         return sum;
-    sum += rangeSumBST(root->left, L, R);
-    sum += rangeSumBST(root->right, L, R);
+    if (root->val > L)
+        sum += rangeSumBST(root->left, L, R);
+    if (root->val < R)
+        sum += rangeSumBST(root->right, L, R);
     if (root->val >= L && root->val <= R)
         sum += root->val;
     return sum;        
+}
+
+int rangeSumBST(struct TreeNode* root, int L, int R) {
+    int sum = 0;
+    
+    if (!root)
+        return sum;
+    if (root->val >= L && root->val <= R)
+        sum = root->val;
+    return sum + rangeSumBST(root->left, L, R) + rangeSumBST(root->right, L, R);
 }
