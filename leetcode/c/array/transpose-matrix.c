@@ -40,26 +40,26 @@ Submissions
  * The sizes of the arrays are returned as *columnSizes array.
  * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
  */
-int** transpose(int** A, int ARowSize, int *AColSizes, int** columnSizes, int* returnSize) {
+int** transpose(int** A, int ARowSize, int *AColSize, int** columnSizes, int* returnSize) {
     int **arr;
     int row, col;
     
-    *returnSize = ARowSize;
+    /* returnSize is AColSize because we are transposing the matrix */
+    *returnSize = *AColSize;
     
     /* allocate memories */
-    arr = (int **)malloc(sizeof(int *) * ARowSize);
-    *columnSizes = (int *)malloc(sizeof(int *) * ARowSize);
-    for (row = 0; row < ARowSize; row++) {
-        int *one_row = (int *)malloc(sizeof(int) * (*AColSizes));
+    arr = (int **)malloc(sizeof(int *) * (*AColSize));
+    *columnSizes = (int *)malloc(sizeof(int *) * (*AColSize));
     
-        for (col = 0; col < *AColSizes; col++) {
-            if (row == col)
-                one_row[col] = A[row][col];
-            else
-                one_row[col] = A[col][row];
+    /* need to start with col iteration first due to transpose */
+    for (col = 0; col < *AColSize; col++) {
+        int *one_row = (int *)malloc(sizeof(int) * ARowSize);
+    
+        for (row = 0; row < ARowSize; row++) {
+            one_row[row] = A[row][col];
         }
-        arr[row] = one_row;
-        (*columnSizes)[row] = *AColSizes;
+        arr[col] = one_row;
+        (*columnSizes)[col] = ARowSize;
     }
-    return arr;
+    return arr;    
 }
