@@ -74,7 +74,6 @@ double* averageOfLevels(struct TreeNode* root, int* returnSize) {
     total = (double *)malloc(sizeof(double) * height);
     num_node = (int *)malloc(sizeof(int) * height);
     *returnSize = height;
-    printf("height %d\n", height);
     
     /* do level order traversal */
     for (ii = 0; ii < height; ii++) {
