@@ -44,3 +44,34 @@ struct ListNode* swapPairs(struct ListNode* head) {
         q->next = NULL;
     return new;
 }
+
+/* recursive solution */
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* swapPairs(struct ListNode* head) {
+    struct ListNode *p, *tmp;
+    
+    if (!head)
+        return NULL;
+    
+    /* return head if there is only one node */
+    if (!head->next)
+        return head;
+    
+    /* save next->next to p */
+    p = head->next->next;
+    
+    /* swap the 2 nodes */
+    tmp = head;
+    head = head->next;
+    head->next = tmp;
+    
+    /* swap the next pair */
+    tmp->next = swapPairs(p);
+    return head;
+}
