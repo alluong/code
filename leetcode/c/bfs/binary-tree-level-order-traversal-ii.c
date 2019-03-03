@@ -1,34 +1,33 @@
 #if 0
-Given a binary tree, find the leftmost value in the last row of the tree.
+107. Binary Tree Level Order Traversal II
+Easy
 
-Example 1:
-Input:
+639
 
-    2
+113
+
+Favorite
+
+Share
+Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
+
+For example:
+Given binary tree [3,9,20,null,null,15,7],
+    3
    / \
-  1   3
-
-Output:
-1
-Example 2: 
-Input:
-
-        1
-       / \
-      2   3
-     /   / \
-    4   5   6
-       /
-      7
-
-Output:
-7
-Note: You may assume the tree (i.e., the given root node) is not NULL.
-
+  9  20
+    /  \
+   15   7
+return its bottom-up level order traversal as:
+[
+  [15,7],
+  [9,20],
+  [3]
+]
 Accepted
-65,608
+209,618
 Submissions
-113,341
+459,248
 #endif
 
 /**
