@@ -53,9 +53,7 @@ level_order(struct TreeNode *root, int *arr, int level)
     if (!root)
         return;
     if (level == 0) {
-        printf("root %d arr %d\n", root->val, *arr);
         if (root->val > *arr) {
-            printf("in here\n");
             *arr = root->val;
         }
     }
