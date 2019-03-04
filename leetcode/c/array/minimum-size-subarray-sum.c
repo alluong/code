@@ -32,17 +32,15 @@ int minSubArrayLen(int s, int* nums, int numsSize) {
     for (ii = 0; ii < numsSize; ii++) {
         sum = nums[ii];
         len = 1;
-        if (sum == s)
+        if (sum >= s)
             return len;
         for (jj = ii + 1; jj < numsSize; jj++) {
             sum += nums[jj];
             ++len;
-            if (sum == s) {
+            if (sum >= s) {
                 if (min > len)
                     min = len;
             }                
-            if (sum > s)
-                break;
         }
     }
     return min != numsSize + 1 ? min : 0;
@@ -53,18 +51,17 @@ int minSubArrayLen(int s, int* nums, int numsSize) {
     min = numsSize + 1;
     sum = 0;
     while (end < numsSize) {
-        sum += nums[end];
-        ++end;
+        while (sum < s && end < numsSize) {
+            sum += nums[end];
+            end++;
+        }        
         
         /* if sum is greater than s, delete elements at start */
-        while (sum > s && start < end) {
+        while (sum >= s && start < end) {
+            if (end - start < min)
+                min = end - start;
             sum -= nums[start];
             start++;
-        }
-        if (sum == s) {
-            if (end - start < min) {
-                min = end - start;
-            }
         }
     }
     return min != numsSize + 1 ? min : 0;
