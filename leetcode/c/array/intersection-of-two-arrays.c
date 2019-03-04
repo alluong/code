@@ -55,10 +55,10 @@ int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* ret
     arr = (int *)malloc(sizeof(int) * size);
     
     /* init */
-    ii = kk = 0;
+    ii = jj = kk = 0;
     while (ii < nums1Size) {
         num1 = nums1[ii];
-        jj = 0;
+        // jj = 0; no need here since nums2 is sorted
         while (jj < nums2Size && nums1[ii] >= nums2[jj]) {
             if (nums1[ii] == nums2[jj]) {
                 /* check and see if it is the same value as the previous one */
