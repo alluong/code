@@ -44,12 +44,8 @@ struct ListNode* reverseList(struct ListNode* head) {
 struct ListNode* reverseList(struct ListNode* head) {
     struct ListNode *rest;
     
-    /* list is empty */
-    if (!head)
-        return NULL;
-    
-    /* list has 1 node */
-    if (!head->next)
+    /* list is empty or list has 1 node */
+    if (!head || !head->next)
         return head;
     
     /* recursive call until reaching last node */
